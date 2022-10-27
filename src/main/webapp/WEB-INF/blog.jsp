@@ -9,6 +9,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page language="java" import="org.owasp.esapi.ESAPI" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.io.PrintWriter" %>
 <%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
 
 
@@ -186,21 +189,13 @@
 <body>
 
 <%
-    String safe = ESAPI.encoder().encodeForHTML( "<script>alert(\\\"hello there\\\") </script>" );
-    //String safe = "<script>alert(\"hello there\") </script>";
-    Object message = request.getAttribute("message");
-    Object hi = request.getAttribute("message");
 
     String name = request.getAttribute("name").toString();
     String email = request.getAttribute("email").toString();
-    String kommentar = ESAPI.encoder().encodeForHTML(request.getAttribute("kommentar").toString());
+    List kommentar = Collections.singletonList(request.getAttribute("kommentar"));
+    //String kommentar = ESAPI.encoder().encodeForHTML(request.getAttribute("kommentar").toString());
     String anz_kommentare = ESAPI.encoder().encodeForHTML(request.getAttribute("length").toString());
-
-    Object kommentar2 = request.getAttribute("kommentar");
-    System.out.println("hier gehts los");
-    System.out.println(kommentar2);
-
-
+    int anz = Integer.parseInt(anz_kommentare);
 %>
 
 
@@ -233,6 +228,21 @@
                 </div>
             </div>
         </c:forEach>
+
+
+        <%
+            System.out.println("Hier sollte eine Ausgabe generiert werden");
+            PrintWriter gen = response.getWriter();
+            for (int i = 0; i < anz; i++) {
+                //gen.println("Hi" + "<br/>");
+                //gen.close();
+                //der Bumms überschreibt leider alles
+
+
+            }
+
+
+        %>
 
 
         <form class="form-block" method="post" action="/AddCommentServlet">

@@ -27,7 +27,7 @@ public class loggingServlet extends HttpServlet {
 
 
 
-        logger.info("moin");
+        //logger.info("moin");
 
 
         String url = request.getRequestURL().toString();
@@ -52,6 +52,9 @@ public class loggingServlet extends HttpServlet {
         String pathInfo = request.getPathInfo();
         String query = request.getQueryString();
 
+        String src_ip = request.getRemoteAddr();
+        String dst_ip = request.getLocalAddr();
+
         response.setContentType("text/html");
         PrintWriter pw = response.getWriter();
         pw.print("Url: " + url + "<br/>");
@@ -73,6 +76,9 @@ public class loggingServlet extends HttpServlet {
         logger.info(query);
         logger.info(method);
         logger.info(status);
+
+        logger.info("Source ip is: " + src_ip);
+        logger.info("Destination ip is: " + dst_ip);
 
 
     }
