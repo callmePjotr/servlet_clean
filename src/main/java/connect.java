@@ -5,15 +5,30 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 public class connect {
     private static final SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy' 'HH:mm:ss.SSS");
-    protected static Connection connectToDatabase() throws SQLException, ClassNotFoundException, FileNotFoundException {
-        //PrintStream o = new PrintStream(new File("B.txt"));
-        //PrintStream console = System.out;
-        //System.setOut(o);
+    protected static final Logger logger = LogManager.getLogger(loggingServlet.class);
+    protected static Connection connectToDatabase(String uri, String method, String src_ip, String hyph, String version, String auth_user, int status, int size) throws SQLException, ClassNotFoundException, FileNotFoundException {
+
+
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        System.out.println(sdf2.format(timestamp) + " " + " " + "Connecting to database");
+        String className = connect.class.getName();
+
+        logger.info("source_ip =" + src_ip +
+                ", hyph =" + hyph +
+                ", auth_user =" + auth_user +
+                " [" + sdf2.format(timestamp) +
+                " +100] " +
+                "\", method =" + method +
+                ", uri =" + uri +
+                ", version =" + version+
+                "\", status =" + status +
+                ", size = " + size +
+                ", message =connecting to database from class " + className);
+
         //Verbindung herstellen
 
         String dbDriver = "com.mysql.cj.jdbc.Driver";
@@ -32,8 +47,20 @@ public class connect {
                 dbUsername,
                 dbPassword);
 
-        System.out.println(sdf2.format(timestamp) + " " + " " + "Connected Successfully");
-        //System.setOut(console);
+        logger.info("source_ip =" + src_ip +
+                ", hyph =" + hyph +
+                ", auth_user =" + auth_user +
+                " [" + sdf2.format(timestamp) +
+                " +100] " +
+                "\", method =" + method +
+                ", uri =" + uri +
+                ", version =" + version+
+                "\", status =" + status +
+                ", size = " + size +
+                ", message =formed url for class " + className);
+
+
+
         return con;
     }
 }

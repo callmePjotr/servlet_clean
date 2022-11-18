@@ -9,14 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cd6a38b-3f85-4d17-a75a-74cd2d78290c" name="Changes" comment="added clf to write own logs">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/servlet_clean_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/servlet_clean_war_exploded.xml" afterDir="false" />
+    <list default="true" id="4cd6a38b-3f85-4d17-a75a-74cd2d78290c" name="Changes" comment="added CLF to RegisterServlet.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AddCommentServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AddCommentServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RegisterServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ServlettoJSP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ServlettoJSP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/connect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/connect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/loggingServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/loggingServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/blog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/blog.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/encrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/encrypt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sign_up.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sign_up.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +180,7 @@
       <workItem from="1667993415848" duration="771000" />
       <workItem from="1668425873224" duration="4311000" />
       <workItem from="1668507728488" duration="2853000" />
-      <workItem from="1668761275384" duration="4178000" />
+      <workItem from="1668761275384" duration="10542000" />
     </task>
     <task id="LOCAL-00001" summary="finally the logging works">
       <created>1666870289185</created>
@@ -209,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667896019918</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added CLF to RegisterServlet.java">
+      <created>1668767786969</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668767786969</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +238,7 @@
     <MESSAGE value="finally the logging works" />
     <MESSAGE value="tested dynamic html generation - did not work" />
     <MESSAGE value="added clf to write own logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="added clf to write own logs" />
+    <MESSAGE value="added CLF to RegisterServlet.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="added CLF to RegisterServlet.java" />
   </component>
 </project>

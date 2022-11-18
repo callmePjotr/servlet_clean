@@ -59,9 +59,6 @@ public class RegisterServlet extends HttpServlet {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         //Die allgemeine Request
-        logger.info("source_ip =" + src_ip +", hyph =" + hyph + ", auth_user =" + auth_user + " [" +  sdf2.format(timestamp) + " +100] " + "\", method =" + method + ", uri =" + uri + ", version =" +version+ "\", status =" + status +", size = " + size + ", message = intial calling of doPost");
-
-
 
 
         logger.info("source_ip =" + src_ip +
@@ -98,7 +95,7 @@ public class RegisterServlet extends HttpServlet {
                     "\", status =" + status +
                     ", size = " + size +
                     ", message = Connecting to Database");
-            con = connect.connectToDatabase();
+            con = connect.connectToDatabase(uri, method, src_ip, hyph, version, auth_user, status, size);
         } catch (Exception e) {
             e.printStackTrace();
             String stackTrace = ExceptionUtils.getStackTrace(e);

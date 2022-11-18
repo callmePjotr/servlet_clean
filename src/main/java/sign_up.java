@@ -13,7 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 @WebServlet(name = "sign_up", urlPatterns = "/sign_up")
 public class sign_up extends HttpServlet {
     private static String encryptpw = null;
@@ -23,6 +24,8 @@ public class sign_up extends HttpServlet {
     private static String pass = null;
     private static String email = null;
     private static final SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy' 'HH:mm:ss.SSS");
+
+    protected static final Logger logger = LogManager.getLogger(loggingServlet.class);
 
 
     @Override
@@ -38,6 +41,17 @@ public class sign_up extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String uri = request.getRequestURI();
+        String method = request.getMethod();
+        String src_ip = request.getRemoteAddr();
+        String hyph = request.getRemoteUser();
+        String version = request.getProtocol();
+        String auth_user = String.valueOf(request.getUserPrincipal());
+
+        int status = response.getStatus();
+        int  size = request.getContentLength();
+
+        String className = String.valueOf(getClass());
         response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
 
 // Set standard HTTP/1.0 no-cache header.
@@ -45,45 +59,110 @@ public class sign_up extends HttpServlet {
 
         //Ein paar Logs für Zwischendurch
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        System.out.println(sdf2.format(timestamp) + " " + " " + "Request received");
-        System.out.println(sdf2.format(timestamp) + " " + " " + "Attempting to connect to the database");
 
+
+
+        logger.info("source_ip =" + src_ip +", hyph =" + hyph + ", auth_user =" + auth_user + " [" +  sdf2.format(timestamp) + " +100] " + "\", method =" + method + ", uri =" + uri + ", version =" +version+ "\", status =" + status +", size = " + size + ", message = intial calling of doPost, classname ="+ className);
 
         //Mit der Datenbank verbinden wie gehabt
         try {
-            con = connect.connectToDatabase();
+            logger.info("source_ip =" + src_ip +
+                    ", hyph =" + hyph +
+                    ", auth_user =" + auth_user +
+                    " [" + sdf2.format(timestamp) +
+                    " +100] " +
+                    "\", method =" + method +
+                    ", uri =" + uri +
+                    ", version =" + version+
+                    "\", status =" + status +
+                    ", size = " + size +
+                    ", message = Connecting to Database, classname =" + className);
+            con = connect.connectToDatabase(uri, method, src_ip, hyph, version, auth_user, status, size);
         } catch (Exception e) {
             e.printStackTrace();
+            logger.info("source_ip =" + src_ip +
+                    ", hyph =" + hyph +
+                    ", auth_user =" + auth_user +
+                    " [" + sdf2.format(timestamp) +
+                    " +100] " +
+                    "\", method =" + method +
+                    ", uri =" + uri +
+                    ", version =" + version+
+                    "\", status =" + status +
+                    ", size = " + size +
+                    ", message = Connecting to Database failed");
+
+            logger.info("source_ip =" + src_ip +
+                    ", hyph =" + hyph +
+                    ", auth_user =" + auth_user +
+                    " [" + sdf2.format(timestamp) +
+                    " +100] " +
+                    "\", method =" + method +
+                    ", uri =" + uri +
+                    ", version =" + version+
+                    "\", status =" + status +
+                    ", size = " + size +
+                    ", message =" + e.getMessage());
         }
-        System.out.println(sdf2.format(timestamp) + " " + " " + "successfully connected with database using param" + " " + con);
+
         PrintWriter out = response.getWriter();
 
         //Werte aus dem Formular holen
+
+        logger.info("source_ip =" + src_ip +
+                ", hyph =" + hyph +
+                ", auth_user =" + auth_user +
+                " [" + sdf2.format(timestamp) +
+                " +100] " +
+                "\", method =" + method +
+                ", uri =" + uri +
+                ", version =" + version+
+                "\", status =" + status +
+                ", size = " + size +
+                ", message =receiving parameters");
+
         System.out.println(sdf2.format(timestamp) + " " + " " + "getting form Paramaters via HTTP POST");
         //String login_new = request.getParameter("login_new");
         String login_new = StringEscapeUtils.escapeHtml4(request.getParameter("login_new"));
         String password_new = request.getParameter("password_new");
         String password_new_confirm = request.getParameter("password_new_confirm");
-        System.out.println(sdf2.format(timestamp) + " " + " " + "Parameter for mail is" + " " + login_new);
-        System.out.println(sdf2.format(timestamp) + " " + " " + "Parameter for password is" + " " + password_new);
-        System.out.println(sdf2.format(timestamp) + " " + " " + "Parameter for confirmed password is" + " " + password_new_confirm);
 
-        System.out.println(sdf2.format(timestamp) + " " + " " + "Using Regex to check if the Email has a correct format");
         //boolean validate_mail = verifyEmail.testUsingRFC5322Regex(login_new);
-        System.out.println(sdf2.format(timestamp) + " " + " " + "Validated the Mail successfully");
 
-        System.out.println(sdf2.format(timestamp) + " " + " " + "Checking if parameters are missing");
         if (login_new == null || login_new.length() == 0 || login_new.equals(" ")) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Invalid Email adress');");
             out.println("location='register.jsp';");
             out.println("</script>");
+            logger.info("source_ip =" + src_ip +
+                    ", hyph =" + hyph +
+                    ", auth_user =" + auth_user +
+                    " [" + sdf2.format(timestamp) +
+                    " +100] " +
+                    "\", method =" + method +
+                    ", uri =" + uri +
+                    ", version =" + version +
+                    "\", status =" + status +
+                    ", size = " + size +
+                    ", message =failed to get parameters");
             return;
         } else if (login_new.length() <= 6 && !login_new.contains("@") && !login_new.contains(".")) {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Invalid Email adress');");
             out.println("location='register.jsp';");
             out.println("</script>");
+
+            logger.info("source_ip =" + src_ip +
+                    ", hyph =" + hyph +
+                    ", auth_user =" + auth_user +
+                    " [" + sdf2.format(timestamp) +
+                    " +100] " +
+                    "\", method =" + method +
+                    ", uri =" + uri +
+                    ", version =" + version +
+                    "\", status =" + status +
+                    ", size = " + size +
+                    ", message =invalid email , classname =" + className);
             return;
 
         }
@@ -99,14 +178,59 @@ public class sign_up extends HttpServlet {
                 out.println("alert('Invalid password form');");
                 out.println("location='register.jsp';");
                 out.println("</script>");
+
+                logger.info("source_ip =" + src_ip +
+                        ", hyph =" + hyph +
+                        ", auth_user =" + auth_user +
+                        " [" + sdf2.format(timestamp) +
+                        " +100] " +
+                        "\", method =" + method +
+                        ", uri =" + uri +
+                        ", version =" + version +
+                        "\", status =" + status +
+                        ", size = " + size +
+                        ", message =invalid password, classname =" + className);
                 return;
             }
 
             //Passwort hashen
-            System.out.println(sdf2.format(timestamp) + " " + " " + "Hashing password");
+        logger.info("source_ip =" + src_ip +
+                ", hyph =" + hyph +
+                ", auth_user =" + auth_user +
+                " [" + sdf2.format(timestamp) +
+                " +100] " +
+                "\", method =" + method +
+                ", uri =" + uri +
+                ", version =" + version +
+                "\", status =" + status +
+                ", size = " + size +
+                ", message =trying to hash password, classname =" + className);
             try {
                 encryptpw = encrypt.send(password_new);
             } catch (NoSuchAlgorithmException e) {
+                logger.info("source_ip =" + src_ip +
+                        ", hyph =" + hyph +
+                        ", auth_user =" + auth_user +
+                        " [" + sdf2.format(timestamp) +
+                        " +100] " +
+                        "\", method =" + method +
+                        ", uri =" + uri +
+                        ", version =" + version +
+                        "\", status =" + status +
+                        ", size = " + size +
+                        ", message =failed to generate hash, classname =" + className);
+
+                logger.info("source_ip =" + src_ip +
+                        ", hyph =" + hyph +
+                        ", auth_user =" + auth_user +
+                        " [" + sdf2.format(timestamp) +
+                        " +100] " +
+                        "\", method =" + method +
+                        ", uri =" + uri +
+                        ", version =" + version+
+                        "\", status =" + status +
+                        ", size = " + size +
+                        ", message =" + e.getMessage() +", classname =" + className );
                 throw new RuntimeException(e);
             }
 
@@ -129,9 +253,44 @@ public class sign_up extends HttpServlet {
 
                     con.close();
 
+                    logger.info("source_ip =" + src_ip +
+                            ", hyph =" + hyph +
+                            ", auth_user =" + auth_user +
+                            " [" + sdf2.format(timestamp) +
+                            " +100] " +
+                            "\", method =" + method +
+                            ", uri =" + uri +
+                            ", version =" + version+
+                            "\", status =" + status +
+                            ", size = " + size +
+                            ", message =added new user to database, classname =" + className );
+
                     getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
 
                 } catch (SQLException e) {
+                    logger.info("source_ip =" + src_ip +
+                            ", hyph =" + hyph +
+                            ", auth_user =" + auth_user +
+                            " [" + sdf2.format(timestamp) +
+                            " +100] " +
+                            "\", method =" + method +
+                            ", uri =" + uri +
+                            ", version =" + version+
+                            "\", status =" + status +
+                            ", size = " + size +
+                            ", message =database exception, classname =" + className );
+
+                    logger.info("source_ip =" + src_ip +
+                            ", hyph =" + hyph +
+                            ", auth_user =" + auth_user +
+                            " [" + sdf2.format(timestamp) +
+                            " +100] " +
+                            "\", method =" + method +
+                            ", uri =" + uri +
+                            ", version =" + version+
+                            "\", status =" + status +
+                            ", size = " + size +
+                            ", message =" + e.getMessage() +", classname =" + className );
                     throw new RuntimeException(e);
                 }
             }
