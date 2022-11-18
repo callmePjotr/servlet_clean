@@ -9,11 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cd6a38b-3f85-4d17-a75a-74cd2d78290c" name="Changes" comment="tested dynamic html generation - did not work">
+    <list default="true" id="4cd6a38b-3f85-4d17-a75a-74cd2d78290c" name="Changes" comment="added clf to write own logs">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/servlet_clean_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/servlet_clean_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RegisterServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/connect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/connect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/loggingServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/loggingServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/blog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/blog.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,8 +53,9 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/llk02/IdeaProjects/servlet_clean/src/main/webapp/WEB-INF/lib&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.41379312&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -170,7 +174,12 @@
       <workItem from="1666870490868" duration="4594000" />
       <workItem from="1666942580336" duration="940000" />
       <workItem from="1667821998037" duration="4309000" />
-      <workItem from="1667894993578" duration="998000" />
+      <workItem from="1667894993578" duration="4288000" />
+      <workItem from="1667913783709" duration="1303000" />
+      <workItem from="1667993415848" duration="771000" />
+      <workItem from="1668425873224" duration="4311000" />
+      <workItem from="1668507728488" duration="2853000" />
+      <workItem from="1668761275384" duration="4178000" />
     </task>
     <task id="LOCAL-00001" summary="finally the logging works">
       <created>1666870289185</created>
@@ -193,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666879537257</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added clf to write own logs">
+      <created>1667896019918</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1667896019918</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +229,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finally the logging works" />
     <MESSAGE value="tested dynamic html generation - did not work" />
-    <option name="LAST_COMMIT_MESSAGE" value="tested dynamic html generation - did not work" />
+    <MESSAGE value="added clf to write own logs" />
+    <option name="LAST_COMMIT_MESSAGE" value="added clf to write own logs" />
   </component>
 </project>

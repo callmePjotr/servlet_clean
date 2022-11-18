@@ -22,7 +22,7 @@ public class connect {
         String dbName = "geheim";
         String dbUsername = "root";
         //String dbUsername = "java";
-        String dbPassword = "";
+        String dbPassword = "password";
         //String dbPassword = "Password123#";
 
 

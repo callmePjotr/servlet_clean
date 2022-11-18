@@ -62,6 +62,7 @@ public class loggingServlet extends HttpServlet {
         int  size = request.getContentLength();
         String version = request.getProtocol();
 
+
         response.setContentType("text/html");
         PrintWriter pw = response.getWriter();
         pw.print("Url: " + url + "<br/>");
@@ -92,7 +93,7 @@ public class loggingServlet extends HttpServlet {
 */
         //dies sollte das gängige Logformat sein
 
-        logger.info(src_ip +" " + hyph + " " + auth_user + " [" +  sdf2.format(timestamp) + " +100] " + "\"" + method + " " + uri + " " +version+ "\" " + status +" " + size);
+        logger.info("source_ip =" + src_ip +", hyph =" + hyph + ", auth_user =" + auth_user + " [" +  sdf2.format(timestamp) + " +100] " + "\", method =" + method + ", uri =" + uri + ", version =" +version+ "\", status =" + status +", size = " + size);
 
 
     }
